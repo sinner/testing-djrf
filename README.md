@@ -1,6 +1,6 @@
 # Testing-Django REST Framework
 
-Instalation
+Installation
 
 ```
   virtualenv env
