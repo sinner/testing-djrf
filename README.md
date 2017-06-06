@@ -1,7 +1,8 @@
 # Testing-Django REST Framework
 
-`
+```
   virtualenv env
+
   source env/bin/activate
 
   pip install django
