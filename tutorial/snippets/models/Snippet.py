@@ -10,7 +10,7 @@ STYLE_CHOICES = sorted((item, item) for item in get_all_styles())
 
 class Snippet(TimeStampable):
 
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(max_length=100, blank=False, default='')
     code = models.TextField()
     linenos = models.BooleanField(default=False)
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
