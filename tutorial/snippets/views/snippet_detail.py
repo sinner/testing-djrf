@@ -6,7 +6,7 @@ from snippets.serializers import SnippetSerializer
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def snippet_detail(request, pk):
+def snippet_detail(request, pk, format=None):
     """
     Retrieve, update or delete a snippet instance.
     """
