@@ -13,11 +13,26 @@ def snippet_list(request, format=None):
     if request.method == 'GET':
         snippets = Snippet.objects.all()
         serializer = SnippetSerializer(snippets, many=True)
-        return Response(serializer.data)
+        return Response({
+            'message': 'There is no data found.'if(len(serializer.data) == 0)else'There is data found.',
+            'data': serializer.data,
+            'error': False,
+            'errorDetails': None
+        })
 
     elif request.method == 'POST':
         serializer = SnippetSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({
+                'message': 'The snippet has been saved successfully.',
+                'data': serializer.data,
+                'error': False,
+                'errorDetails': None
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'message': 'There are one or more errors in the data sent.',
+            'data': request.data,
+            'error': True,
+            'errorDetails': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
