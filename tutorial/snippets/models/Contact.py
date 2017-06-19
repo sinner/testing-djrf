@@ -9,6 +9,7 @@ class Contact(TimeStampable):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     zip_code = models.CharField(max_length=15, blank=True, null=True)
+    profile_picture_url = models.CharField(max_length=255, blank=True, null=True)
 
     def create_user(self, email, password):
         self.user.set_email(email)
